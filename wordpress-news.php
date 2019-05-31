@@ -14,7 +14,7 @@ Author URI: https://goto.systems/plugins
 
 function gotosystems_custom_post_type () {
   $labels = array(
-    'name' => 'News',
+    'name' => 'All News',
     'singular_name' => 'All News',
     'add_new' => 'Add News',
     'all_items' => 'All News',
@@ -44,7 +44,7 @@ function gotosystems_custom_post_type () {
       'revisions',
     ),
   'taxonomies' => array('category', 'post_tag'),
-  'menu_position' => 4,
+  'menu_position' => 5,
   'exclude_from_search' => false
  );
  register_post_type('news', $args);
@@ -63,8 +63,29 @@ function gotosystems_post_type() {
     'public' => true,
     'rewrite' => array('slug' => 'news'),
     'show_in_rest' => true,
+    'menu_icon'   => 'dashicons-screenoptions',
     'supports' => array('editor')
    )
   );
 }
 add_action( 'init', 'gotosystems_post_type' );
+
+
+
+add_action('admin_menu', 'gotosystems_setup_news');
+ 
+function gotosystems_setup_news() {
+        add_menu_page( 
+		'Setup WordPress News', 
+		'Setup News', 
+		'manage_options', 
+		'setup-wordpress-news', 
+		'setup_news_init'
+	);
+	
+}
+ 
+function setup_news_init(){
+        echo "<h1>Hello in setup panel custom post type - news</h1>";
+	echo "<p>Future plugin options:</br> - Add new instances of post types;</br> - Confirm deleting database tables for new post types while removing the plugin.</p>";
+}
