@@ -1,17 +1,16 @@
-<?php
+<?php defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 /**
  * @package News
  * @version 1.0.0
  */
 /*
-Plugin Name: News - custom post.
+Plugin Name: "News {custom post type}"
 Plugin URI: https://github.com/kamil-cias/wordpress-news
 Description: News - custom post type in content management system WordPress.
 Author: Kamil Ciaś <info@goto.systems>
-Version: 1.0.0
+Version: 1.1.0
 Author URI: https://goto.systems/plugins
 */
-
 function gotosystems_custom_post_type () {
   $labels = array(
     'name' => 'All News',
@@ -70,14 +69,12 @@ function gotosystems_post_type() {
 }
 add_action( 'init', 'gotosystems_post_type' );
 
-
-
 add_action('admin_menu', 'gotosystems_setup_news');
  
 function gotosystems_setup_news() {
         add_menu_page( 
 		'Setup WordPress News', 
-		'Setup News', 
+		'NEWS Panel', 
 		'manage_options', 
 		'setup-wordpress-news', 
 		'setup_news_init'
@@ -86,6 +83,6 @@ function gotosystems_setup_news() {
 }
  
 function setup_news_init(){
-        echo "<h1>Hello in setup panel custom post type - news</h1>";
+        echo "<h1>Welcome in panel info / custom post type - news</h1>";
 	echo "<p>Future plugin options:</br> - Add new instances of post types;</br> - Confirm deleting database tables for new post types while removing the plugin.</p>";
 }
